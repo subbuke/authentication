@@ -2,12 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const ejs = require("ejs");
+
 
 const app = express();
 require("dotenv").config();
-app.set('view engine', 'ejs')
-app.use(express.static('public'));
+
 
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
@@ -15,16 +14,9 @@ mongoose.connect(process.env.MONGO_URI)
 }).catch(err => console.log(err))
 
 app.get("/", (req, res) => {
-    res.render('welcome')
+    res.send('welcome')
 })
  
-app.get("/login", (req, res) => {
-    res.render('login')
-})
-
-app.get("/register", (req, res) => {
-    res.render('register')
-})
 
 const PORT = process.env.PORT || 5000;
 
